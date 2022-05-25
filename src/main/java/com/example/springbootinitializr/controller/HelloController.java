@@ -15,10 +15,10 @@ public class HelloController {
     @GetMapping("/hello")
     public String getHelloString(@RequestParam(required = false) String name){
         if(Objects.equals(name, "") || name == null) {
-            return "Hello, World";
+            return "Hello, World.";
         }
 
-        return "Hello, " + name;
+        return "Hello, " + name + ".";
     }
 
     @GetMapping("/hello/{name}")
@@ -29,17 +29,17 @@ public class HelloController {
             return getUpperCaseHello(name);
         }
 
-        return "Hello, " + multipleNamesWithAnd(names);
+        return "Hello, " + multipleNamesWithAnd(names) + ".";
     }
 
     private String getUpperCaseHello(String name) {
         var returnString = "Hello, " + name;
 
         if (name.equals(name.toUpperCase(Locale.ROOT))) {
-            return returnString.toUpperCase(Locale.ROOT);
+            return returnString.toUpperCase(Locale.ROOT) + "!";
         }
 
-        return returnString;
+        return returnString + ".";
     }
 
     private String multipleNamesWithAnd(String[] names) {
@@ -48,6 +48,6 @@ public class HelloController {
         var namesWithoutLastOne = Arrays.copyOfRange(names, 0, names.length - 1);
         var result = String.join(", ", namesWithoutLastOne);
 
-        return result + " and " + names[names.length - 1];
+        return result + " and " + names[names.length - 1] + ".";
     }
 }
