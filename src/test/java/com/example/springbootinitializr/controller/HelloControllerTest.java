@@ -54,4 +54,22 @@ class HelloControllerTest {
                 .andExpect(content().string(containsString("Hello, " + name)));
     }
 
+    @Test
+    public void it_should_return_names_in_order_when_two_names_are_provided() throws Exception {
+        String name = "Teyyihan,Fatiha";
+
+        this.mockMvc.perform(get("/hello/" + name)).andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Hello, Teyyihan and Fatiha")));
+    }
+
+    @Test
+    public void it_should_return_names_in_order_when_multiple_names_are_provided() throws Exception {
+        String name = "Teyyihan,Fatiha,Fran";
+
+        this.mockMvc.perform(get("/hello/" + name)).andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Hello, Teyyihan, Fatiha and Fran")));
+    }
+
 }
