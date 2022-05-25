@@ -36,4 +36,22 @@ class HelloControllerTest {
                 .andExpect(content().string(containsString("Hello, " + name)));
     }
 
+    @Test
+    public void it_should_return_result_in_upper_case_when_name_is_upper_case() throws Exception {
+        String name = "TEYYIHAN";
+
+        this.mockMvc.perform(get("/hello/" + name)).andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("HELLO, " + name)));
+    }
+
+    @Test
+    public void it_should_return_result_in_lower_case_when_name_is_lower_case() throws Exception {
+        String name = "teyyihan";
+
+        this.mockMvc.perform(get("/hello/" + name)).andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Hello, " + name)));
+    }
+
 }
